@@ -7,6 +7,7 @@ import ReposList from "./components/ReposList";
   
   function App() {
     const [formularioEstaVisivel, setFormularioEstaVisivel] = useState(true);
+    const [nomeUsuario,setNomeUsuario] = useState('')
     const nome = "João";
     function retornaNome(){
       return nome
@@ -19,8 +20,14 @@ import ReposList from "./components/ReposList";
   return (  //tem que colocartudo dentro de uma tag como header foofter main ou div
   // ; e opcional
     <main>
-      <Perfil nome="João Vitor" endereco='https://github.com/joaovitordias13.png'/>
-      <ReposList />
+      <input type="text" onBlur={(e) => setNomeUsuario(e.target.value)} />
+
+      {nomeUsuario.length > 4 && (
+        <>
+          <Perfil nomeUsuario={nomeUsuario}/>
+          <ReposList nomeUsuario={nomeUsuario}/>
+        </>
+      )}
       {/* {formularioEstaVisivel && (
         <Formulario /> //para comentar apertar ctrl e ;
       )}
